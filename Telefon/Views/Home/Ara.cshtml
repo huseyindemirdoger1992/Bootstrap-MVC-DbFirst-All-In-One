@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Ara";
+    Layout = "~/Views/Layout.cshtml";
+}
+<hr />
+<h3>Arama Yapılan Kelime: @ViewBag.Deger</h3>
+<hr />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Düzenle</th>
+            <th scope="col">Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Telefon.Models.Rehber item in ViewBag.Sonuc)
+        {
+            string Duz = "Duz" + item.id;
+            <tr>
+                <th scope="row">@item.id</th>
+                <td>@item.Ad</td>
+                <td>@item.Soyad</td>
+                <td>@item.Telefon</td>
+                <td>@item.Mail</td>
+                <td>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#@Duz">
+                        Düzenle
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="@Duz" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="/Home/Duzenle/" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel"> @item.Ad @item.Soyad Kişi Bilgileri. </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <input type="text" name="id" value="@item.id" hidden />
+
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Ad</label>
+                                            <input type="text" class="form-control" name="Ad" value="@item.Ad" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Soyad</label>
+                                            <input type="text" class="form-control" name="Soyad" value="@item.Soyad" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Telefon</label>
+                                            <input type="text" class="form-control" name="Telefon" value="@item.Telefon" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput1" class="form-label">Mail Adres</label>
+                                            <input type="text" class="form-control" name="Mail" value="@item.Mail">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                                        <button type="submit" class="btn btn-primary">Düzenlemeyi Kaydet</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Sil
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel"> @item.Ad @item.Soyad Kişi Bilgileri Silinecek. </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <input type="text" name="id" value="@item.id" hidden />
+
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Ad</label>
+                                        <input type="text" class="form-control" name="Ad" value="@item.Ad" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Soyad</label>
+                                        <input type="text" class="form-control" name="Soyad" value="@item.Soyad" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Telefon</label>
+                                        <input type="text" class="form-control" name="Telefon" value="@item.Telefon" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Mail Adres</label>
+                                        <input type="text" class="form-control" name="Mail" value="@item.Mail">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                    <a href="/Home/Sil/@item.id" class="btn btn-outline-danger">Evet Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

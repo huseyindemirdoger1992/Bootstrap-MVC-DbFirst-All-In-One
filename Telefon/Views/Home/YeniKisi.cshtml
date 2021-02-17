@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "YeniKisi";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <hr />
+            <h2>Yeni Kişi Ekleme Sayfası</h2>
+            <hr />
+
+            <form action="/Home/Ekle/" method="post">
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Ad</label>
+                    <input type="text" class="form-control" name="Ad" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Soyad</label>
+                    <input type="text" class="form-control" name="Soyad" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Telefon</label>
+                    <input type="text" class="form-control" name="Telefon" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Mail Adres</label>
+                    <input type="text" class="form-control" name="Mail">
+                </div>
+                <hr />
+                <button type="submit" class="btn btn-outline-success" style="width:100%">Kaydet</button>
+            </form>
+
+        </div>
+        <div class="col-md-6">
+            <img src="https://cdn.dribbble.com/users/1403962/screenshots/3388455/__.gif" alt="Alternate Text"  style="width:100%"/>
+        </div>
+    </div>
+</div>
+
+
